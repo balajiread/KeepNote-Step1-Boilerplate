@@ -80,6 +80,6 @@ public class NoteController {
 	public String deleteNote(ModelMap model,@RequestParam int noteId) {
 		boolean delFlag = noteRepository.deleteNote(noteId);
 		model.addAttribute("savedNotes", noteRepository.getAllNotes());
-		return "index";
+		return "redirect:"+"/";
 	}
 }
