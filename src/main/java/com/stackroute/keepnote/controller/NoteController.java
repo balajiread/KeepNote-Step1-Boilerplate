@@ -61,6 +61,7 @@ public class NoteController {
 			@RequestParam String noteTitle,
 			@RequestParam String noteContent,
 			@RequestParam String noteStatus) {
+		System.out.println("In savenote ");
 		Note note = new Note();
 		note.setNoteId(noteId);
 		note.setNoteTitle(noteTitle);

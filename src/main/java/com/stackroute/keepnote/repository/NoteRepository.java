@@ -14,22 +14,24 @@ import com.stackroute.keepnote.model.Note;
 public class NoteRepository {
 
 	/* Declare a variable called "list" to store all the notes. */
-	List<Note> listOfNotes = null;
+	List<Note> list; 
+
 	public NoteRepository() {
+		list =new ArrayList<Note>();
+		
 		/* Initialize the variable using proper data type */
-		listOfNotes = new ArrayList<Note>();
 	}
 
 	/* This method should return all the notes in the list */
 
 	public List<Note> getList() {
-		return listOfNotes;
+		return list;
 	}
 
 	/* This method should set the list variable with new list of notes */
 
 	public void setList(List<Note> list) {
-		listOfNotes = list;
+		this.list = list;
 	}
 
 	/*
@@ -38,16 +40,16 @@ public class NoteRepository {
 	 */
 
 	public void addNote(Note note) {
-		listOfNotes.add(note);
+		list.add(0, note);
 	}
 
 	/* This method should deleted a specified note from the list */
 
 	public boolean deleteNote(int noteId) {
 		/* Use list iterator to find matching note id and remove it from the list */
-		for(int i=0; i<listOfNotes.size(); i++) {
-			if(listOfNotes.get(i).getNoteId() == noteId) {
-				listOfNotes.remove(i);
+		for(int i=0;i<list.size();i++) {
+			if(list.get(i).getNoteId()==noteId) {
+				list.remove(list.get(i));
 				return true;
 			}
 		}
@@ -57,7 +59,7 @@ public class NoteRepository {
 	/* This method should return the list of notes */
 
 	public List<Note> getAllNotes() {
-		return listOfNotes;
+		return list;
 	}
 
 	/*
@@ -67,11 +69,13 @@ public class NoteRepository {
 	 */
 
 	public boolean exists(int noteId) {
-		for(int i=0; i<listOfNotes.size(); i++) {
-			if(listOfNotes.get(i).getNoteId() == noteId) {
-				return true;
+		boolean flag=false;
+		for(int i=0;i<list.size();i++) {
+			if(list.get(i).getNoteId()==noteId) {
+				flag = true;
+				break;
 			}
 		}
-		return false;
+		return flag;
 	}
 }
